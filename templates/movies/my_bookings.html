@@ -1,0 +1,30 @@
+{% extends 'users/basic.html' %}
+
+
+{% block content %}
+<div class="container mt-4">
+  <h2 class="mb-3">My Bookings</h2>
+
+  {% if bookings %}
+    <div class="list-group">
+      {% for booking in bookings %}
+        <div class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <strong>Movie:</strong> {{ booking.movie.name }} <br>
+            <strong>Theater:</strong> {{ booking.theater.name }} <br>
+            <strong>Seat:</strong> {{ booking.seat.seat_number }} <br>
+            <strong>Time:</strong> {{ booking.theater.time }} <br>
+            <strong>Booked At:</strong> {{ booking.booking_time|date:"d M Y, h:i A" }}
+          </div>
+          <form action="{% url 'cancel_booking' booking.id %}" method="POST">
+            {% csrf_token %}
+            <button class="btn btn-danger btn-sm" onclick="return confirm('Cancel this booking?');">Cancel</button>
+          </form>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>You haven’t made any bookings yet.</p>
+  {% endif %}
+</div>
+{% endblock %}

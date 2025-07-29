@@ -96,59 +96,66 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
             {% if user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link" href="/">Home</a>
+              <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/movies">Movies</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+              </li>
+               <li class="nav-item">
+              <a class="nav-link" href="{% url 'about' %}">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/movies">Movies</a>
+              <a class="nav-link" href="{% url 'contact' %}">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+              <a class="nav-link" href="{% url 'my_bookings' %}">My Bookings</a>
             </li>
-            <li class="nav-item">
-              <form method="Post" action="{% url 'logout' %}">
-                {% csrf_token %}
-                <button
-                  type="submit"
-                  class="nav-link"
-                  style="border: none; background: none"
-                >
-                  Logout
-                </button>
-              </form>
-            </li>
+              <li class="nav-item">
+                <form method="POST" action="{% url 'logout' %}">
+                  {% csrf_token %}
+                  <button type="submit" class="nav-link" style="border: none; background: none">
+                    Logout
+                  </button>
+                </form>
+              </li>
             {% else %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'login' %}">Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'register' %}">Register</a>
-            </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'register' %}">Register</a>
+              </li>
             {% endif %}
-          </ul>
-        </div>
-      </div>
-    </nav>
 
-    <div class="container">{% block content %} {% endblock %}</div>
-    <footer class="footer mt-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4 mb-4 mb-md-0">
-            <h5>About Us</h5>
-            <p>
-              We provide the best movie experience in town. Book your tickets
-              now and enjoy the show!
-            </p>
+          </ul>
+
           </div>
-          <div class="col-md-4 mb-4 mb-md-0">
-            <h5>Quick Links</h5>
-            <ul class="list-unstyled">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Movies</a></li>
-              <li><a href="#">Book Tickets</a></li>
-              <li><a href="#">Contact</a></li>
-            </ul>
+        </div>
+      </nav>
+
+      <div class="container">{% block content %} {% endblock %}</div>
+      <footer class="footer mt-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4 mb-4 mb-md-0">
+              <h5>About Us</h5>
+              <p>
+                We provide the best movie experience in town. Book your tickets
+                now and enjoy the show!
+              </p>
+            </div>
+            <div class="col-md-4 mb-4 mb-md-0">
+              <h5>Quick Links</h5>
+              <ul class="list-unstyled">
+                <li><a href="/">Home</a></li>
+                <li><a href="/movies">Movies</a></li>
+                <li><a href="#">Book Tickets</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+              </ul>
           </div>
           <div class="col-md-4">
             <h5>Follow Us</h5>
